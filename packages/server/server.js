@@ -97,6 +97,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/patients', require('./routes/api/patients'));
 app.use('/api/professionals', require('./routes/api/professionals'));
 app.use('/api/questionnaires', require('./routes/api/questionnaires'));
+app.use('/api/research', require('./routes/api/research'));
 app.use('/api/seeding', require('./routes/api/seeding'));
 
 // All errors are sent back as JSON

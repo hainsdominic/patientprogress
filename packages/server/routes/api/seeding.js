@@ -12,7 +12,7 @@ const admin = require('../../middleware/admin');
 // @route POST api/seeding/:professional_id
 // @desc Register patient: creates user and patient file
 // @access Admin
-router.post('/:professional_id', admin, async (req, res) => {
+router.post  ('/:professional_id', admin, async (req, res) => {
   try {
     const createPatient = async () => {
       const email = faker.internet.email().toLowerCase();
