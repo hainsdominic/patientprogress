@@ -37,11 +37,11 @@ module.exports = {
                 let subject = '';
                 switch (patient.language) {
                   case 'en':
-                    message = `<h3>You have a new questionnaire to fill!</h3><p>Please <a href="https://app.patientprogress.ca/login">sign into the application</a> as soon as possible to fill it.</p><br><p>Thank you,</p><p>The PatientProgress Team</p>`;
+                    message = `<h3>You have a new questionnaire to fill!</h3><p>Please <a href="https://${process.env.INSTANCE}.patientprogress.ca/login">sign into the application</a> as soon as possible to fill it.</p><br><p>Thank you,</p><p>The PatientProgress Team</p>`;
                     subject = 'New questionnaire';
                     break;
                   case 'fr':
-                    message = `<h3>Vous avez un nouveau questionnaire à remplir!</h3><p>Veuillez <a href="https://app.patientprogress.ca/login"> vous connecter</a> dès que possible afin de le remplir.</p><br><p>Merci,</p><p>L'équipe PatientProgress</p>`;
+                    message = `<h3>Vous avez un nouveau questionnaire à remplir!</h3><p>Veuillez <a href="https://${process.env.INSTANCE}.patientprogress.ca/login"> vous connecter</a> dès que possible afin de le remplir.</p><br><p>Merci,</p><p>L'équipe PatientProgress</p>`;
                     subject = 'Nouveau questionnaire';
                     break;
 

@@ -209,7 +209,7 @@ router.post(
         user: req.user.id,
       }).select('_id');
 
-      const url = `https://app.patientprogress.ca/register/${id}`;
+      const url = `https://${process.env.INSTANCE}.patientprogress.ca/register/${id}`;
 
       const transporter = nodemailer.createTransport({
         host: config.get('nodemailerHost'),
