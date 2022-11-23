@@ -26,8 +26,6 @@ import {
 } from '@material-ui/pickers';
 import { pwnedPassword } from 'hibp';
 
-import Consent from './Consent';
-
 import GridContainer from '../../components/Grid/GridContainer';
 import GridItem from '../../components/Grid/GridItem.js';
 import Card from '../../components/Card/Card.js';
@@ -104,10 +102,10 @@ const Register = ({ setAlert, register, isAuthenticated, type, match }) => {
           dob,
           email: email.toLowerCase(),
           password,
-          research: consentData.dataConsent && consentData.participantConsent,
+          research: false,
           professional: match.params.id,
-          dataConsent: consentData.dataConsent,
-          participantConsent: consentData.participantConsent,
+          dataConsent: false,
+          participantConsent: false,
           terms,
         });
       }
@@ -353,13 +351,6 @@ const Register = ({ setAlert, register, isAuthenticated, type, match }) => {
                         onChange={formik.handleChange}
                       />
                     </FormControl>
-                  </GridItem>
-                  <GridItem xs={12}>
-                    <br />
-                    <Consent
-                      setConsentData={setConsentData}
-                      consentData={consentData}
-                    />
                   </GridItem>
                   <GridItem xs={12}>
                     <FormControlLabel
