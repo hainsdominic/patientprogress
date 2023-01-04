@@ -68,3 +68,33 @@ export const addQuestionnaire =
       dispatch(setAlert(err.message, 'danger'));
     }
   };
+
+export const addQuestionnaireFilledByProfessional =
+  (history, id, title, data, time, questionnaireId) => async (dispatch) => {
+    try {
+      const config = {
+        hearders: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const questionnaire = {
+        title,
+        data,
+        time,
+        questionnaireId,
+      };
+
+      await axios.post(
+        `${URI}/api/questionnaires/${id}/professional`,
+        questionnaire,
+        config
+      );
+
+      dispatch(setAlert(i18n.t('alert.questionnaireFilled'), 'success'));
+
+      history.push(`/professional/patients/${id}`);
+    } catch (err) {
+      dispatch(setAlert(err.message, 'danger'));
+    }
+  };

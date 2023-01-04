@@ -52,8 +52,21 @@ app.use(xss());
 
 let corsOptions;
 if (process.env.NODE_ENV === 'production') {
+  const allowedOrigins = [
+    `https://${process.env.INSTANCE}.patientprogress.ca`,
+    `https://prosante.patientprogress.ca`,
+  ];
   corsOptions = {
-    origin: `https://${process.env.INSTANCE}.patientprogress.ca`,
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          'The CORS policy for this site does not ' +
+          'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   };
 }

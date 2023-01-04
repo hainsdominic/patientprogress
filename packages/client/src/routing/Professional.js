@@ -9,6 +9,7 @@ import Questionnaire from '../views/professional/Questionnaire';
 import NewReport from '../views/professional/NewReport';
 import Report from '../views/professional/Report';
 import Metrics from '../views/professional/Metrics';
+import FillQuestionnaire from '../views/professional/FillQuestionnaire';
 import NewReEvaluationReport from '../views/professional/NewReEvaluationReport';
 import ReEvaluationReport from '../views/professional/ReEvaluationReport';
 
@@ -37,6 +38,11 @@ const Professional = () => {
         exact
         path="/professional/patients/:id"
         component={PatientOverview}
+      />
+      <ProfessionalRoute
+        exact
+        path="/professional/patients/:id/questionnaires/:questionnaire_id/fill"
+        component={FillQuestionnaire}
       />
       <ProfessionalRoute
         exact

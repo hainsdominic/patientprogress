@@ -13,9 +13,11 @@ import {
   FormControl,
   FormControlLabel,
   Switch,
+  IconButton,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DatePicker from 'react-multi-date-picker';
@@ -47,6 +49,7 @@ const BUNDLES = ['NECK_BUNDLE', 'BACK_BUNDLE', 'MS_BUNDLE', 'MI_BUNDLE'];
 const PatientOverview = ({
   professional: { patient, loading },
   match,
+  history,
   getPatient,
   getQuestionnaireList,
   sendQuestionnaires,
@@ -286,15 +289,29 @@ const PatientOverview = ({
 
   const renderDeleteButton = (params) => {
     return (
-      <Button
-        color="danger"
-        justIcon
+      <IconButton
+        color="default"
         onClick={() => {
           removeQuestionnaire(match.params.id, params.row.questionnaire);
         }}
       >
         <DeleteIcon />
-      </Button>
+      </IconButton>
+    );
+  };
+
+  const renderFillButton = (params) => {
+    return (
+      <IconButton
+        color="default"
+        onClick={() => {
+          history.push(
+            `/professional/patients/${match.params.id}/questionnaires/${params.row.questionnaireId}/fill`
+          );
+        }}
+      >
+        <EditIcon />
+      </IconButton>
     );
   };
 
@@ -560,6 +577,7 @@ const PatientOverview = ({
                           ).displayTitle;
                           return {
                             id: `${i}-${questionnaire}`,
+                            questionnaireId: questionnaire,
                             questionnaire: _id,
                             sent,
                             title,
@@ -595,7 +613,15 @@ const PatientOverview = ({
                           width: 105,
                         },
                         {
-                          field: 'id',
+                          field: 'fill',
+                          headerName: `${t('professional.patient.fill')}`,
+                          sortable: false,
+                          width: 105,
+                          disableClickEventBubbling: true,
+                          renderCell: renderFillButton,
+                        },
+                        {
+                          field: 'delete',
                           headerName: `${t('professional.patient.remove')}`,
                           sortable: false,
                           width: 105,
